@@ -16,29 +16,19 @@ var del         = require('del');
 var CacheBuster = require('gulp-cachebust');
 var cachebust   = new CacheBuster();
 
-// Main task
-gulp.task('build', ['clean', 'build-js', 'build-css', 'inject', 'connect', 'watch']);
-
-// Connect task
-gulp.task('connect', ['inject'], function() {
-  browserSync.init({
-    server: 'public',
-    port: 4000
-  });
-
-  gulp.watch('./public/*.html').on('change', browserSync.reload);
-});
+// Main build task
+gulp.task('build', [ 'clean', 'build-js', 'build-css', 'inject' ]);
 
 // Clean task
-gulp.task('clean', function() {
-  return del([
+gulp.task('clean', function(cb) {
+  del([
     './public/js/',
     './public/css/'
-  ]);
+  ]).then(cb());
 });
 
 // JS task
-gulp.task('build-js', [ 'clean' ], function() {
+gulp.task('build-js', function() {
   return browserify({
     entries: './app/app.js',
     debug: true,
@@ -56,7 +46,7 @@ gulp.task('build-js', [ 'clean' ], function() {
 });
 
 // CSS task
-gulp.task('build-css', [ 'clean' ], function() {
+gulp.task('build-css', function() {
   return gulp.src('./sass/*')
     .pipe(sourcemaps.init())
     .pipe(sass())
@@ -79,8 +69,23 @@ gulp.task('inject', [ 'build-js', 'build-css' ], function() {
 // Development tasks
 ///////////////////////////////////
 
+// Watcher and development run task
+gulp.task('watch', [ 'clean', 'build-js', 'build-css', 'inject', 'connect' ], function() {
+  gulp.watch('./app/**/*.js', [ 'inject-js' ]);
+  gulp.watch('./sass/main.scss', [ 'inject-css' ]);
+  gulp.watch('./public/*.html').on('change', browserSync.reload);
+});
+
+// Connect task
+gulp.task('connect', [ 'inject' ], function() {
+  browserSync.init({
+    server: 'public',
+    port: 4000
+  });
+});
+
 // Clean and rebuild JS
-gulp.task('inject-js', [ 'clean-js', 'rebuild-js' ], function() {
+gulp.task('inject-js', [ 'clean-js', 'build-js' ], function() {
   var target = gulp.src('./public/index.html');
   var sources = gulp.src(['./public/js/*.js'], { read: false });
 
@@ -89,29 +94,12 @@ gulp.task('inject-js', [ 'clean-js', 'rebuild-js' ], function() {
     .pipe(browserSync.stream());
 });
 
-gulp.task('rebuild-js', [ 'clean-js' ], function() {
-  return browserify({
-    entries: './app/app.js',
-    debug: true,
-    //paths: ['./js/controllers', './js/services', './js/directives'],
-    transform: [ngAnnotate]
-  }).bundle()
-    .pipe(source('main.js'))
-    .pipe(buffer())
-    .pipe(cachebust.resources())
-    .pipe(sourcemaps.init({ loadMaps: true }))
-    .pipe(uglify())
-    .on('error', gutil.log)
-    .pipe(sourcemaps.write('./maps'))
-    .pipe(gulp.dest('./public/js/'));
-});
-
-gulp.task('clean-js', function() {
-  return del([ './public/js/' ]);
+gulp.task('clean-js', function(cb) {
+  del([ './public/js/' ]).then(cb());
 });
 
 // Clean and rebuild CSS
-gulp.task('inject-css', [ 'clean-css', 'rebuild-css' ], function() {
+gulp.task('inject-css', [ 'clean-css', 'build-css' ], function() {
   var target = gulp.src('./public/index.html');
   var sources = gulp.src(['./public/css/*.css'], { read: false });
 
@@ -120,21 +108,6 @@ gulp.task('inject-css', [ 'clean-css', 'rebuild-css' ], function() {
     .pipe(browserSync.stream());
 });
 
-gulp.task('rebuild-css', [ 'clean-css' ], function() {
-  return gulp.src('./sass/*')
-    .pipe(sourcemaps.init())
-    .pipe(sass())
-    .pipe(cachebust.resources())
-    .pipe(sourcemaps.write('./maps'))
-    .pipe(gulp.dest('./public/css'));
-});
-
-gulp.task('clean-css', function() {
-  return del([ './public/css/' ]);
-});
-
-// Watcher for JS and SASS files
-gulp.task('watch', function() {
-  gulp.watch('app/**/*.js', [ 'inject-js' ]);
-  gulp.watch('sass/main.scss', [ 'inject-css' ]);
+gulp.task('clean-css', function(cb) {
+  del([ './public/css/' ]).then(cb());
 });
