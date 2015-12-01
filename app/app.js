@@ -1,6 +1,6 @@
 'use strict';
 
-require('angular');
+var angular = require('angular');
 var MainController = require('./controllers/MainController');
 
 var app = angular.module('BANG-Boilerpate', []);
