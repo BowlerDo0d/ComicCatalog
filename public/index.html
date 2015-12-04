@@ -8,6 +8,7 @@
   </head>
   <body>
     <h1>Welcome to the boilerplate code for a BANG stack web application</h1>
+
     <div class="container-fluid" ng-controller="MainController as main">
       <div class="col-md-4">
         <p>{{ main.message }}</p>
@@ -37,6 +38,11 @@
         </div>
       </div>
     </div>
+
+    <a ui-sref="state1">State 1</a>
+    <a ui-sref="state2">State 2</a>
+
+    <div ui-view></div>
 
     <!-- inject:js -->
     <!-- endinject -->
