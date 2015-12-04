@@ -1,6 +1,4 @@
 .idea/
 node_modules/
 .sass-cache/
-public/css/
-public/js/
-public/fonts/
+dist/

@@ -1,6 +1,7 @@
 'use strict';
 
-var gulp = require('gulp');
+var config  = require('../config');
+var gulp    = require('gulp');
 
 // BrowserSync needs to have one and only one instance running.
 // Create a named environment here and use .get() within
@@ -9,7 +10,7 @@ var browserSync = require('browser-sync').create('devEnv');
 
 gulp.task('connect', function() {
   browserSync.init({
-    server: 'public',
+    server: config.buildPath,
     port: 4000
   });
 });

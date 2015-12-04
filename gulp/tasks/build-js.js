@@ -1,5 +1,6 @@
 'use strict';
 
+var config      = require('../config');
 var gulp        = require('gulp');
 var sourcemaps  = require('gulp-sourcemaps');
 var uglify      = require('gulp-uglify');
@@ -12,9 +13,9 @@ var buffer      = require('vinyl-buffer');
 var CacheBuster = require('gulp-cachebust');
 var cachebust   = new CacheBuster();
 
-gulp.task('build-js', function() {
+gulp.task('build:js', function() {
   return browserify({
-      entries: './app/app.js',
+      entries: config.entryPoint,
       debug: true,
       //paths: ['./js/controllers', './js/services', './js/directives'],
       transform: [ngAnnotate]
@@ -26,5 +27,5 @@ gulp.task('build-js', function() {
     .pipe(uglify())
     .on('error', gutil.log)
     .pipe(sourcemaps.write('./maps'))
-    .pipe(gulp.dest('./public/js/'));
+    .pipe(gulp.dest(config.buildPath + '/js'));
 });
