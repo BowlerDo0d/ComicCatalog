@@ -8,7 +8,7 @@ var sass        = require('gulp-sass');
 var CacheBuster = require('gulp-cachebust');
 var cachebust   = new CacheBuster();
 
-gulp.task('build-css', [ 'lint-js' ], function() {
+gulp.task('build-css', function() {
   return gulp.src(config.sass)
     .pipe(sourcemaps.init())
     .pipe(sass({

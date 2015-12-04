@@ -12,7 +12,7 @@ var buffer      = require('vinyl-buffer');
 var CacheBuster = require('gulp-cachebust');
 var cachebust   = new CacheBuster();
 
-gulp.task('build-js', [ 'lint-js' ], function() {
+gulp.task('build-js', function() {
   return browserify({
       entries: './app/app.js',
       debug: true,

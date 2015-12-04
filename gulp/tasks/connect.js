@@ -7,7 +7,7 @@ var gulp = require('gulp');
 // other files that depend on BrowserSync to get the same instance
 var browserSync = require('browser-sync').create('devEnv');
 
-gulp.task('connect', [ 'inject' ], function() {
+gulp.task('connect', function() {
   browserSync.init({
     server: 'public',
     port: 4000
