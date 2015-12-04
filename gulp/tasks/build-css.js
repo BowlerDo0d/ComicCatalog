@@ -11,7 +11,13 @@ var cachebust   = new CacheBuster();
 gulp.task('build-css', [ 'lint-js' ], function() {
   return gulp.src(config.sass)
     .pipe(sourcemaps.init())
-    .pipe(sass().on('error', sass.logError))
+    .pipe(sass({
+      includePaths: [
+        './sass',
+        config.bootstrap + '/assets/stylesheets',
+        config.fontAwesome + '/scss'
+      ]
+    }).on('error', sass.logError))
     .pipe(cachebust.resources())
     .pipe(sourcemaps.write('./maps'))
     .pipe(gulp.dest('./public/css'));

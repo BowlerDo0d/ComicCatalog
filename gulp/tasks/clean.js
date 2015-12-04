@@ -6,6 +6,7 @@ var del   = require('del');
 gulp.task('clean', function(cb) {
   del([
     './public/js/',
-    './public/css/'
+    './public/css/',
+    './public/fonts/'
   ]).then(cb());
 });

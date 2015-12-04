@@ -1,5 +1,11 @@
 'use strict';
 
+/*jslint browser: true*/
+var $;
+window.jQuery = $ = require('jQuery');
+
+require('bootstrap-sass');
+
 var angular = require('angular');
 var MainController = require('./controllers/MainController');
 

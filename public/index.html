@@ -8,8 +8,34 @@
   </head>
   <body>
     <h1>Welcome to the boilerplate code for a BANG stack web application</h1>
-    <div ng-controller="MainController as main">
-      <p>{{ main.message }}</p>
+    <div class="container-fluid" ng-controller="MainController as main">
+      <div class="col-md-4">
+        <p>{{ main.message }}</p>
+        <button class="btn btn-primary">
+          <i class="fa fa-camera-retro"></i> Camera
+        </button>
+      </div>
+      <div class="col-md-8">
+        <div>
+
+          <!-- Nav tabs -->
+          <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Home</a></li>
+            <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Profile</a></li>
+            <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Messages</a></li>
+            <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Settings</a></li>
+          </ul>
+
+          <!-- Tab panes -->
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="home">This is the home content</div>
+            <div role="tabpanel" class="tab-pane" id="profile">Profile section content</div>
+            <div role="tabpanel" class="tab-pane" id="messages">Another section with messages content!</div>
+            <div role="tabpanel" class="tab-pane" id="settings">Yep, you guessed it... Settings!</div>
+          </div>
+
+        </div>
+      </div>
     </div>
 
     <!-- inject:js -->

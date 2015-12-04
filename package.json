@@ -24,6 +24,9 @@
     "vinyl-source-stream": "^1.1.0"
   },
   "dependencies": {
-    "angular": "^1.4.7"
+    "angular": "^1.4.7",
+    "bootstrap-sass": "^3.3.6",
+    "font-awesome": "^4.5.0",
+    "jquery": "^2.1.4"
   }
 }
