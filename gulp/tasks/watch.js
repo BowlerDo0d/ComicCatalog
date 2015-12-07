@@ -15,5 +15,7 @@ gulp.task('watch', function (done) {
     runSequence('clean:css', 'build:css', 'inject:css');
   });
 
-  // TODO: Add support for *.html file watcher
+  gulp.watch(config.html.watchList, function () {
+    runSequence([ 'source:html', 'source:templates'], 'inject', browserSync.reload);
+  });
 });

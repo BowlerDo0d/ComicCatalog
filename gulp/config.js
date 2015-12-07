@@ -31,8 +31,11 @@ module.exports = function () {
           './*.js'
         ]
       },
-      templates: appSource + '**/*.tmpl.html',
-      baseFile: appSource + indexFile,
+      html: {
+        templates: appSource + '**/*.tmpl.html',
+        baseFile: appSource + indexFile,
+        watchList: appSource + '**/*.html'
+      },
       build: {
         root: buildPath,
         baseFile: buildPath + indexFile,

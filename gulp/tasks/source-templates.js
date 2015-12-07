@@ -7,7 +7,7 @@ var gulpif    = require('gulp-if');
 var args      = require('yargs').argv;
 
 gulp.task('source:templates', function () {
-  return gulp.src(config.templates)
+  return gulp.src(config.html.templates)
     .pipe(gulpif(args.verbose, gulpprint()))
     .pipe(gulp.dest(config.build.root));
 });
