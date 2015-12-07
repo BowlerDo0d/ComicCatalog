@@ -1,11 +1,10 @@
 'use strict';
 
-var gulp        = require('gulp');
-var runSequence = require('run-sequence');
-
-// Main build task
-gulp.task('build', function() {
-  runSequence('clean', 'lint:js', 'icons', ['build:js', 'build:css'], 'source:html', 'source:templates', 'inject' );
-});
+/**
+ * This is the main gulpfile.
+ * All tasks are separated into their own files for clarity and readability.
+ * The index.js file in the gulp folder gathers all defined tasks.
+ * Tasks are located in gulp/tasks
+ */
 
 require('./gulp');

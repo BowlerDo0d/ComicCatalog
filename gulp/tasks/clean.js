@@ -1,11 +1,11 @@
 'use strict';
 
-var config  = require('../config');
+var config  = require('../config')();
 var gulp    = require('gulp');
 var del     = require('del');
 
-gulp.task('clean', function(cb) {
+gulp.task('clean', function (cb) {
   del([
-    config.buildPath
+    config.build.root
   ]).then(cb());
 });

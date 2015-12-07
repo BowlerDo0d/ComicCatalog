@@ -1,18 +1,19 @@
 'use strict';
 
-var config      = require('../config');
+var config      = require('../config')();
 var gulp        = require('gulp');
 var browserSync = require('browser-sync').get('devEnv');
 var runSequence = require('run-sequence');
 
-gulp.task('watch', function() {
-  runSequence( 'clean', 'lint:js', 'icons', [ 'build:js', 'build:css' ], 'source:html', 'source:templates', 'inject', 'connect' );
+gulp.task('watch', function (done) {
+  runSequence('clean', 'lint:js', 'icons', [ 'build:js', 'build:css' ], 'source:html', 'source:templates', 'inject', 'connect', done);
 
-  gulp.watch('./src/app/**/*.js', function() {
-    runSequence( 'clean:js', 'lint:js', 'build:js', 'inject:js' );
+  gulp.watch(config.js.watchList, function () {
+    runSequence('clean:js', 'lint:js', 'build:js', 'inject:js');
   });
-  gulp.watch('./src/sass/main.scss', function() {
-    runSequence( 'clean:css', 'build:css', 'inject:css' );
+  gulp.watch(config.styles.main, function () {
+    runSequence('clean:css', 'build:css', 'inject:css');
   });
-  gulp.watch(config.buildPath + '/*.html').on('change', browserSync.reload);
+
+  // TODO: Add support for *.html file watcher
 });
