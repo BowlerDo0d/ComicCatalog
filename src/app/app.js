@@ -13,25 +13,21 @@ var MainController;
 
 app.config(function ($stateProvider, $urlRouterProvider) {
   // Un-matched URL
-  $urlRouterProvider.otherwise('/state1');
+  $urlRouterProvider.otherwise('/setup');
 
   // Setup the states
   $stateProvider
-    .state('state1', {
-      url: '/state1',
-      templateUrl: 'app/templates/state1.tmpl.html'
+    .state('setup', {
+      url: '/setup',
+      templateUrl: 'app/templates/setup.tmpl.html'
     })
-    .state('state1.list', {
-      url: '/list',
-      templateUrl: 'app/templates/state1.list.tmpl.html'
+    .state('gulp-info', {
+      url: '/gulp-info',
+      templateUrl: 'app/templates/gulp-info.tmpl.html'
     })
-    .state('state2', {
-      url: '/state2',
-      templateUrl: 'app/templates/state2.tmpl.html'
-    })
-    .state('state2.list', {
-      url: '/list',
-      templateUrl: 'app/templates/state2.list.tmpl.html'
+    .state('about', {
+      url: '/about',
+      templateUrl: 'app/templates/about.tmpl.html'
     });
 });
 
@@ -39,5 +35,18 @@ app.controller('MainController', MainController);
 
 function MainController() {
   var vm = this;
-  vm.message = 'Angular Works!!!';
+  vm.navItems = [
+    {
+      name: 'Setup',
+      href: 'setup'
+    },
+    {
+      name: 'Gulp Info',
+      href: 'gulp-info'
+    },
+    {
+      name: 'About',
+      href: 'about'
+    }
+  ];
 }

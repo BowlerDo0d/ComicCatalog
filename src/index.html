@@ -6,43 +6,20 @@
     <!-- inject:css -->
     <!-- endinject -->
   </head>
-  <body>
-    <h1>Welcome to the boilerplate code for a BANG stack web application</h1>
+  <body ng-controller="MainController as main">
+    <div class="container">
+      <h1>Welcome to the boilerplate code for a BANG stack web application</h1>
 
-    <div class="container-fluid" ng-controller="MainController as main">
-      <div class="col-md-4">
-        <p>{{ main.message }}</p>
-        <button class="btn btn-primary">
-          <i class="fa fa-camera-retro"></i> Camera
-        </button>
-      </div>
-      <div class="col-md-8">
-        <div>
+      <!-- Navigation -->
+      <ul class="nav nav-pills">
+        <li ng-repeat="navItem in main.navItems" role="presentation" ui-sref-active="active">
+          <a ui-sref="{{navItem.href}}">{{navItem.name}}</a>
+        </li>
+      </ul>
 
-          <!-- Nav tabs -->
-          <ul class="nav nav-tabs" role="tablist">
-            <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Home</a></li>
-            <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Profile</a></li>
-            <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Messages</a></li>
-            <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Settings</a></li>
-          </ul>
+      <div ui-view></div>
 
-          <!-- Tab panes -->
-          <div class="tab-content">
-            <div role="tabpanel" class="tab-pane active" id="home">This is the home content</div>
-            <div role="tabpanel" class="tab-pane" id="profile">Profile section content</div>
-            <div role="tabpanel" class="tab-pane" id="messages">Another section with messages content!</div>
-            <div role="tabpanel" class="tab-pane" id="settings">Yep, you guessed it... Settings!</div>
-          </div>
-
-        </div>
-      </div>
     </div>
-
-    <a ui-sref="state1">State 1</a>
-    <a ui-sref="state2">State 2</a>
-
-    <div ui-view></div>
 
     <!-- inject:js -->
     <!-- endinject -->
