@@ -6,7 +6,7 @@ var runSequence = require('run-sequence');
 gulp.task('build', function (done) {
   runSequence(
     'clean',
-    'lint:js',
+    'lint',
     'icons',
     ['build:js', 'build:css'],
     'source:html',
