@@ -1,15 +1,16 @@
 'use strict';
 
-/*jslint browser: true*/
-var $;
-window.jQuery = $ = require('jQuery');
-var bootstrap = require('bootstrap-sass');
+var $, app;
+var jQuery = require('jQuery');
+
 var angular = require('angular');
 var uiRouter = require('angular-ui-router');
 
-var app = angular.module('BANG-Boilerpate', [ uiRouter ]);
+require('bootstrap-sass');
 
-var MainController;
+window.jQuery = $ = jQuery;
+
+app = angular.module('BANG-Boilerpate', [ uiRouter ]);
 
 app.config(function ($stateProvider, $urlRouterProvider) {
   // Un-matched URL
