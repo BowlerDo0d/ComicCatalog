@@ -3,5 +3,3 @@ node_modules/
 .sass-cache/
 build/
 dist/
-/.jscsrc
-/.jshintrc
