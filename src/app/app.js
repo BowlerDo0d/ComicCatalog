@@ -1,14 +1,13 @@
 'use strict';
 
-var $, app;
-var jQuery = require('jQuery');
+var $, app, angular, uiRouter;
 
-var angular = require('angular');
-var uiRouter = require('angular-ui-router');
+window.jQuery = $ = require('jQuery');
 
 require('bootstrap-sass');
 
-window.jQuery = $ = jQuery;
+angular = require('angular');
+uiRouter = require('angular-ui-router');
 
 app = angular.module('BANG-Boilerpate', [ uiRouter ]);
 
@@ -32,22 +31,4 @@ app.config(function ($stateProvider, $urlRouterProvider) {
     });
 });
 
-app.controller('MainController', MainController);
-
-function MainController() {
-  var vm = this;
-  vm.navItems = [
-    {
-      name: 'Setup',
-      href: 'setup'
-    },
-    {
-      name: 'Gulp Info',
-      href: 'gulp-info'
-    },
-    {
-      name: 'About',
-      href: 'about'
-    }
-  ];
-}
+require('./mainController.js');
