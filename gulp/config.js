@@ -1,41 +1,59 @@
 'use strict';
 
 module.exports = function () {
-  var appSource = './src/',
+  var project = require('../package.json'),
+    source = './src/',
+    appSource = source + 'app/',
     buildPath = './build/',
     indexFile = 'index.html',
     bootstrapPath = './node_modules/bootstrap-sass/',
     fontAwesomePath = './node_modules/font-awesome/',
 
     config = {
+
       bootstrap: {
         root: bootstrapPath,
         styles: bootstrapPath + 'assets/stylesheets/'
       },
+
       fontAwesome: {
         root: fontAwesomePath,
         fonts: fontAwesomePath + 'fonts/**.*',
         styles: fontAwesomePath + 'scss/'
       },
+
       styles: {
-        sass: appSource + 'sass/**/*.scss',
-        main: appSource + 'sass/main.scss'
+        sass: source + 'sass/**/*.scss',
+        main: source + 'sass/main.scss'
       },
+
       js: {
-        appEntryPoint: appSource + 'app/app.js',
+        appEntryPoint: appSource + 'app.js',
         compiledFile: 'main.js',
-        watchList: appSource + 'app/**/*.js',
+        watchList: appSource + '**/*.js',
         lintPaths: [
-          appSource + 'app/**/*.js',
+          appSource + '**/*.js',
           './gulp/**/*.js',
           './*.js'
         ]
       },
+
       html: {
         templates: appSource + '**/*.tmpl.html',
-        baseFile: appSource + indexFile,
-        watchList: appSource + '**/*.html'
+        baseFile: source + indexFile,
+        watchList: source + '**/*.html'
       },
+
+      templateCache: {
+        destination: appSource,
+        file: 'templates.js',
+        options: {
+          module: project.name + '.templates',
+          standalone: true,
+          root: 'app/'
+        }
+      },
+
       build: {
         root: buildPath,
         baseFile: buildPath + indexFile,

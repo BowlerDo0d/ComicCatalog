@@ -1,7 +1,7 @@
 'use strict';
 
 var angular = require('angular');
-var app = angular.module('BANG-Boilerpate');
+var app = angular.module('ngSpark');
 
 app.controller('MainController', MainController);
 

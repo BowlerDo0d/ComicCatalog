@@ -6,6 +6,7 @@ var del     = require('del');
 
 gulp.task('clean', function (cb) {
   del([
-    config.build.root
+    config.build.root,
+    config.templateCache.destination + config.templateCache.file
   ]).then(cb());
 });

@@ -3,3 +3,4 @@ node_modules/
 .sass-cache/
 build/
 dist/
+src/app/templates.js
