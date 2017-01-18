@@ -1,22 +1,15 @@
-'use strict';
+import 'babel-polyfill';
 
-var $, app, angular;
+import 'angular';
+import 'angular-ui-router';
+import 'angular-ui-bootstrap';
 
-// Load these on the main window object
-window.jQuery = $ = require('jQuery');
+import './templates';
+import routing from './routes';
 
-angular = require('angular');
-
-// Vendor modules
-require('angular-ui-router');
-require('bootstrap-sass');
-
-// Custom modules
-require('./templates.js');
+import MainController from './mainController';
 
 // Main module
-app = angular.module('ngSpark', [ 'ngSpark.templates', 'ui.router' ]);
-
-app.config(require('./routes'));
-
-require('./mainController.js');
+angular.module('ngSpark', [ 'ui.bootstrap', 'ui.router', 'ngSpark.templates' ])
+  .config(routing)
+  .controller('MainController', MainController);

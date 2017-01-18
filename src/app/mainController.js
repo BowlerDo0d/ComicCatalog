@@ -1,24 +1,22 @@
-'use strict';
+class MainController {
 
-var angular = require('angular');
-var app = angular.module('ngSpark');
+  constructor() {
+    this.navItems = [
+      {
+        name: 'Setup',
+        href: 'setup'
+      },
+      {
+        name: 'Gulp Info',
+        href: 'gulp-info'
+      },
+      {
+        name: 'About',
+        href: 'about'
+      }
+    ];
+  }
 
-app.controller('MainController', MainController);
-
-function MainController() {
-  var vm = this;
-  vm.navItems = [
-    {
-      name: 'Setup',
-      href: 'setup'
-    },
-    {
-      name: 'Gulp Info',
-      href: 'gulp-info'
-    },
-    {
-      name: 'About',
-      href: 'about'
-    }
-  ];
 }
+
+export default MainController;
