@@ -28,6 +28,7 @@
       }
     ],
     "jasmine/no-global-setup": "off",
+    "max-len": "off",
     "no-param-reassign": "off",
     "one-var": [ "error", "always" ],
     "quotes": [

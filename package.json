@@ -6,6 +6,11 @@
   "author": "Steve Mahony",
   "license": "MIT",
   "repository": "https://github.com/BowlerDo0d/ngSpark.git",
+  "browserify": {
+    "transform": [
+      "babelify"
+    ]
+  },
   "devDependencies": {
     "babel-core": "^6.21.0",
     "babel-eslint": "^7.1.1",
@@ -36,6 +41,11 @@
     "gulp-task-listing": "^1.0.1",
     "gulp-uglify": "^1.5.1",
     "gulp-util": "^3.0.7",
+    "jasmine-core": "^2.5.2",
+    "karma": "^1.4.0",
+    "karma-babel-preprocessor": "^6.0.1",
+    "karma-jasmine": "^1.1.0",
+    "karma-phantomjs-launcher": "^1.0.2",
     "run-sequence": "^1.1.5",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0",
@@ -47,5 +57,8 @@
     "angular-ui-router": "^0.2.15",
     "bootstrap-sass": "^3.3.7",
     "font-awesome": "^4.5.0"
+  },
+  "scripts": {
+    "tests": "karma start"
   }
 }
