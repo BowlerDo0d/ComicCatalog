@@ -1,6 +1,8 @@
+.DS_Store
 .idea/
 node_modules/
 .sass-cache/
 build/
 dist/
+coverage/
 src/app/templates.js
