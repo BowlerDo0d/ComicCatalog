@@ -11,6 +11,12 @@
       "babelify"
     ]
   },
+  "nyc": {
+    "exclude": [
+      "src/app/**/*.spec.js",
+      "src/app/templates.js"
+    ]
+  },
   "devDependencies": {
     "babel-core": "^6.21.0",
     "babel-eslint": "^7.1.1",
@@ -63,6 +69,6 @@
     "font-awesome": "^4.5.0"
   },
   "scripts": {
-    "tests": "karma start"
+    "tests": "NODE_ENV=test karma start"
   }
 }

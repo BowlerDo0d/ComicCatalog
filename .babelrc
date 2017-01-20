@@ -2,12 +2,11 @@
   "presets": ["es2015"],
   "sourceMaps": true,
   "plugins": [
-    "transform-object-assign",
-    [ "istanbul", {
-      "exclude": [
-        "src/app/**/*.spec.js",
-        "src/app/templates.js"
-      ]
-    }]
-  ]
+    "transform-object-assign"
+  ],
+  "env": {
+    "test": {
+      "plugins": [ "istanbul" ]
+    }
+  }
 }
