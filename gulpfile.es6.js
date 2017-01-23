@@ -57,8 +57,7 @@ gulp.task('build:css', () => (
 gulp.task('build:js', () => (
   browserify({
     entries: config.js.appEntryPoint,
-    debug: true,
-    transform: [babelify, ngAnnotate]
+    debug: true
   }).bundle()
     .pipe(source(config.js.compiledFile))
     .pipe(buffer())

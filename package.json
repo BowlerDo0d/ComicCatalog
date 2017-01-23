@@ -8,7 +8,8 @@
   "repository": "https://github.com/BowlerDo0d/ngSpark.git",
   "browserify": {
     "transform": [
-      "babelify"
+      "babelify",
+      "browserify-ngannotate"
     ]
   },
   "nyc": {
@@ -28,6 +29,7 @@
     "browser-sync": "^2.10.0",
     "browserify": "^12.0.1",
     "browserify-ngannotate": "^1.0.1",
+    "cross-env": "^3.1.4",
     "del": "^2.1.0",
     "eslint-config-airbnb-base": "^11.0.1",
     "eslint-config-angular": "^0.5.0",
@@ -69,6 +71,6 @@
     "font-awesome": "^4.5.0"
   },
   "scripts": {
-    "tests": "NODE_ENV=test karma start"
+    "test": "cross-env NODE_ENV=test karma start"
   }
 }
