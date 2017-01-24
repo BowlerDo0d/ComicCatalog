@@ -1,11 +1,11 @@
 {
-  "name": "ngSpark",
+  "name": "comicCatalog",
   "version": "1.0.0",
-  "description": "Boilerplate code for creating an AngularJS web application",
+  "description": "AngularJS application with Firebase for logging a comic book collection",
   "main": "build/index.html",
   "author": "Steve Mahony",
   "license": "MIT",
-  "repository": "https://github.com/BowlerDo0d/ngSpark.git",
+  "repository": "https://github.com/BowlerDo0d/ComicCatalog.git",
   "browserify": {
     "transform": [
       "babelify",
