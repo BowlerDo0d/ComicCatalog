@@ -12,7 +12,8 @@ module.exports = function karmaConf(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      '**/*.js'
+      'main.js',
+      '**/*.spec.js'
     ],
 
     // list of files to exclude

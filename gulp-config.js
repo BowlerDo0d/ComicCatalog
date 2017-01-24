@@ -30,7 +30,7 @@ const source = './src',
     },
 
     js: {
-      appEntryPoint: `${appSource}/app.js`,
+      appEntryPoint: `${appSource}/main.js`,
       compiledFile: 'main.js',
       watchList: `${appSource}/**/*.js`,
       lintPaths: [
