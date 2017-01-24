@@ -1,28 +1,26 @@
+import browserify from 'browserify';
+import browserSync from 'browser-sync';
+import buffer from 'vinyl-buffer';
+import CacheBuster from 'gulp-cachebust';
+import del from 'del';
+import eslint from 'gulp-eslint';
+import gulp from 'gulp';
+import gulpif from 'gulp-if';
+import gulpprint from 'gulp-print';
+import gutil from 'gulp-util';
+import inject from 'gulp-inject';
+import minifyHtml from 'gulp-minify-html';
+import runSequence from 'run-sequence';
+import sass from 'gulp-sass';
+import source from 'vinyl-source-stream';
+import sourcemaps from 'gulp-sourcemaps';
+import taskListing from 'gulp-task-listing';
+import templateCache from 'gulp-angular-templatecache';
+import uglify from 'gulp-uglify';
+import { argv } from 'yargs';
 import config from './gulp-config';
 
-const args = require('yargs').argv,
-  babelify = require('babelify'),
-  browserify = require('browserify'),
-  browserSync = require('browser-sync'),
-  buffer = require('vinyl-buffer'),
-  CacheBuster = require('gulp-cachebust'),
-  cachebust = new CacheBuster(),
-  del = require('del'),
-  eslint = require('gulp-eslint'),
-  gulp = require('gulp'),
-  gulpif = require('gulp-if'),
-  gulpprint = require('gulp-print'),
-  gutil = require('gulp-util'),
-  inject = require('gulp-inject'),
-  minifyHtml = require('gulp-minify-html'),
-  ngAnnotate = require('browserify-ngannotate'),
-  runSequence = require('run-sequence'),
-  sass = require('gulp-sass'),
-  source = require('vinyl-source-stream'),
-  sourcemaps = require('gulp-sourcemaps'),
-  taskListing = require('gulp-task-listing'),
-  templateCache = require('gulp-angular-templatecache'),
-  uglify = require('gulp-uglify');
+const cachebust = new CacheBuster();
 
 /* Build tasks */
 gulp.task('build', (done) => {
@@ -40,8 +38,8 @@ gulp.task('build', (done) => {
 
 gulp.task('build:css', () => (
   gulp.src(config.styles.sass)
-    .pipe(gulpif(args.verbose, gulpprint()))
-    .pipe(gulpif(!args.production, sourcemaps.init()))
+    .pipe(gulpif(argv.verbose, gulpprint()))
+    .pipe(gulpif(!argv.production, sourcemaps.init()))
     .pipe(sass({
       includePaths: [
         config.styles.sass,
@@ -50,7 +48,7 @@ gulp.task('build:css', () => (
       ]
     }).on('error', sass.logError))
     .pipe(cachebust.resources())
-    .pipe(gulpif(!args.production, sourcemaps.write('./maps')))
+    .pipe(gulpif(!argv.production, sourcemaps.write('./maps')))
     .pipe(gulp.dest(config.build.css.path))
 ));
 
@@ -62,10 +60,10 @@ gulp.task('build:js', () => (
     .pipe(source(config.js.compiledFile))
     .pipe(buffer())
     .pipe(cachebust.resources())
-    .pipe(gulpif(!args.production, sourcemaps.init({ loadMaps: true })))
+    .pipe(gulpif(!argv.production, sourcemaps.init({ loadMaps: true })))
     .pipe(uglify())
     .on('error', gutil.log)
-    .pipe(gulpif(!args.production, sourcemaps.write('./maps')))
+    .pipe(gulpif(!argv.production, sourcemaps.write('./maps')))
     .pipe(gulp.dest(config.build.js.path))
 ));
 
@@ -99,7 +97,7 @@ gulp.task('default', ['help']);
 /* Font task */
 gulp.task('fonts', () => (
   gulp.src(config.fonts)
-    .pipe(gulpif(args.verbose, gulpprint()))
+    .pipe(gulpif(argv.verbose, gulpprint()))
     .pipe(gulp.dest(config.build.fonts.path))
 ));
 
@@ -136,7 +134,7 @@ gulp.task('inject:js', () => {
 /* Linting task */
 gulp.task('lint', () => (
   gulp.src(config.js.lintPaths)
-    .pipe(gulpif(args.verbose, gulpprint()))
+    .pipe(gulpif(argv.verbose, gulpprint()))
     .pipe(eslint())
     .pipe(eslint.format())
 ));
@@ -168,7 +166,7 @@ gulp.task('serve:dev', (done) => {
 /* Source html copy task */
 gulp.task('source:html', () => (
   gulp.src(config.html.baseFile)
-    .pipe(gulpif(args.verbose, gulpprint()))
+    .pipe(gulpif(argv.verbose, gulpprint()))
     .pipe(gulp.dest(config.build.root))
 ));
 
